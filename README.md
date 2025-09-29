@@ -63,10 +63,10 @@
 #### Joystick Pack 
 >> - Joystick Pack scripts only support the Old Input System.
 >> - Joystick Prefabs
-    >>> • Fixed Joystick – fixed position (bottom-left).
-    >>> • Floating Joystick – hidden by default, shown when receiving interaction. 
-    >>> • Dynamic Joystick – moves following the drag direction.
-    >>> • Variable Joystick – can switch between Fixed, Floating, and Dynamic; editable via scripts.
+     • Fixed Joystick – fixed position (bottom-left). </br>
+     • Floating Joystick – hidden by default, shown when receiving interaction. </br>
+     • Dynamic Joystick – moves following the drag direction.</br>
+     • Variable Joystick – can switch between Fixed, Floating, and Dynamic; editable via scripts.</br>
 #### Character Controller
 > Not using Rigidbody/Physics (not used in this project).
 #### ref → directly updates the variable.
