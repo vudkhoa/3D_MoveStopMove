@@ -1,6 +1,5 @@
 using Player.View;
 using Utils.DesignPattern.State;
-using UnityEngine;
 
 namespace Player.StateAnim
 {
@@ -8,13 +7,12 @@ namespace Player.StateAnim
     {
         public void Enter(PlayerView player)
         {
-            //Debug.Log("Enter Running");
             player.animator.SetBool("IsRunning", true);
         }
 
         public void Execute(PlayerView player)
         {
-            if (!player.IsMoving())
+            if (!player.IsRunning())
             {
                 player.StateMachine.Change(player, new PlayerIdleState());
             }

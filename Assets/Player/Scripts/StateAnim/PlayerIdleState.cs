@@ -1,20 +1,21 @@
 using Player.View;
 using Utils.DesignPattern.State;
-using Player.StateAnim;
-using UnityEngine;
 
-public class PlayerIdleState : IState<PlayerView>
+namespace Player.StateAnim
 {
-    public void Enter(PlayerView player) { }
-
-    public void Execute(PlayerView player)
+    public class PlayerIdleState : IState<PlayerView>
     {
-        //Debug.Log("Player is Idle");
-        if (player.IsMoving())
-        {
-            player.StateMachine.Change(player, new PlayerRunningState());
-        }
-    }
+        public void Enter(PlayerView player) { }
 
-    public void Exit(PlayerView player) { }
+        public void Execute(PlayerView player)
+        {
+            //Debug.Log("Player is Idle");
+            if (player.IsRunning())
+            {
+                player.StateMachine.Change(player, new PlayerRunningState());
+            }
+        }
+
+        public void Exit(PlayerView player) { }
+    }
 }

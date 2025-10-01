@@ -1,13 +1,17 @@
 using UnityEngine;
 using Utils.DesignPattern.State;
+using Player.StateAnim;
+using Player.Controller;
+
 namespace Player.View 
 {
     public class PlayerView : MonoBehaviour
     {
         [Header("Player View Setting")]
-        [SerializeField] private Joystick joystick;
-        public Animator animator;
-        private float _speed = 1f;
+        [SerializeField] public Animator animator;
+        [SerializeField] private SpriteRenderer circleRange;
+
+        private float _speed = 1.2f;
 
         // input
         private float _horizontalInput;
@@ -20,12 +24,15 @@ namespace Player.View
         // State Anim
         public readonly StateMachine<PlayerView> StateMachine = new();
 
+        // Joystick
+        private Joystick joystick;
 
         private void Start()
         {
             this._rb = GetComponent<Rigidbody>();
             this._transform = GetComponent<Transform>();
             this.StateMachine.Change(this, new PlayerIdleState());
+            this.SetScaleFollowR();
         }
 
         private void Update()
@@ -78,9 +85,26 @@ namespace Player.View
             }
         }
 
-        public bool IsMoving()
+        public bool IsRunning()
         {
             return this._horizontalInput != 0 || this._verticalInput != 0;
+        }
+
+        public void SetupJoystick(Joystick joy)
+        {
+            this.joystick = joy;
+        }
+    
+        private void SetScaleFollowR()
+        {
+            // Get Input
+            float originR = this.circleRange.bounds.extents.x;
+            float ratio = PlayerController.Instance.R / originR;
+            Vector3 scale = this.circleRange.transform.localScale;
+
+            // Set Scale
+            this.circleRange.transform.localScale = new Vector3(scale.x * ratio, scale.y * ratio, scale.z * ratio);
+
         }
     }
 }

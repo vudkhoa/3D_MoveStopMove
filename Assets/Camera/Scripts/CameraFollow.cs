@@ -1,3 +1,4 @@
+using Player.View;
 using UnityEngine;
 namespace CameraFollow
 {
@@ -8,6 +9,12 @@ namespace CameraFollow
         public Vector3 offset = new Vector3(0, 3, -6);
         public float smoothTime = 0.2f;
         private Vector3 velocity = Vector3.zero;
+
+
+        public void SetupTarget(PlayerView player)
+        {
+            this.target = player.transform;
+        }
 
         // Synchronized with Moved to avoid jittering (**)
         private void FixedUpdate()

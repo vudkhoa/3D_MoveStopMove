@@ -13,6 +13,15 @@
 > - State (for managing player animations). </br>
 ![3d_msm_d2_gif](https://github.com/user-attachments/assets/d5c4ab4a-a1be-45d6-aefb-ea813f9e0607)
 
+### Day 3 
+- Implement enemy spawning.
+- Add enemy movement (random pathfinding with obstacle avoidance + animations).
+- Create a circular range around the player (following R input).
+- If an enemy enters the player’s range → stop movement and rotate.
+- Apply the Object Pooling design pattern.
+- Add a circular indicator for enemies.
+- Implement the State design pattern in EnemyView (Idle, Run).
+
 ## Development
 ### Player
 #### View
@@ -33,6 +42,11 @@
 
 > - StateMachine
 > <img width="606" height="367" alt="image" src="https://github.com/user-attachments/assets/54d164ec-fa72-4472-a900-3a4e2d23b10f" />
+
+#### Object Pooling:
+> - ObjectPool
+
+> - PooledObject
 
 ### Camrera Follow
 > - Using offset + FixedUpdate + SmoothDamp.
@@ -60,6 +74,7 @@
 >> - Detail Mask: A mask (often alpha) that defines where the secondary/detail maps are applied. Use to limit dirt, scratches, or micro detail to edges or specific regions.
 >> - Emission: Makes material self-illuminated (glows). You can set an emission color and intensity or an emission map to control glowing areas. Emission does not light scene geometry unless you use baked GI or specific real-time GI setups.<img width="439" height="71" alt="image" src="https://github.com/user-attachments/assets/e860e6e5-6912-488f-ad59-f34249682987" />
 >> - Tiling & Offset: Tiling repeats the texture along U/V (X/Y) axes; Offset moves the UVs. Use to scale or align textures (e.g., bricks, wood grain).
+
 #### Joystick Pack 
 >> - Joystick Pack scripts only support the Old Input System.
 >> - Joystick Prefabs
@@ -67,6 +82,20 @@
      • Floating Joystick – hidden by default, shown when receiving interaction. </br>
      • Dynamic Joystick – moves following the drag direction.</br>
      • Variable Joystick – can switch between Fixed, Floating, and Dynamic; editable via scripts.</br>
+
 #### Character Controller
 > Not using Rigidbody/Physics (not used in this project).
+
 #### ref → directly updates the variable.
+
+### Physics
+> In Collider: If choose isTrigger &rarr; OnTriggerEnter. Else: OnCollisionEnter.
+> Raycast: [Physics.Raycast](https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Physics.Raycast.html)
+
+### Code To Create New Mesh
+> Circle
+>> 
+
+### SpriteRenderer: 
+> Get bounds ~ World
+>> 
