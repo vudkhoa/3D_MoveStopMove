@@ -1,5 +1,6 @@
 using Enemy.View;
 using Utils.DesignPattern.State;
+using UnityEngine;
 namespace Enemy.StateAnim
 {
     public class EnemyRunningState : IState<EnemyView>
@@ -13,13 +14,20 @@ namespace Enemy.StateAnim
         {
             if (!enemy.IsRunning)
             {
-                enemy.StateMachine.Change(enemy, new EnemyIdleState());
+                if (enemy.IsAttacking)
+                {
+                    enemy.StateMachine.Change(enemy, new EnemyAttackState());
+                }
+                else if (enemy.IsIdle)
+                {
+                    enemy.StateMachine.Change(enemy, new EnemyIdleState());
+                }
             }
         }
 
         public void Exit(EnemyView enemy)
         {
-            enemy.animator.SetBool("IsRunning", true);
+            enemy.animator.SetBool("IsRunning", false);
         }
     }
 }

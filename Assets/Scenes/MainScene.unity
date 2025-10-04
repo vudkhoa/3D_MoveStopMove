@@ -633,7 +633,7 @@ MonoBehaviour:
   PositionInit: {x: 0, y: 1, z: 4}
   mainCamera: {fileID: 963194229}
   joystick: {fileID: 497194852}
-  R: 0.5
+  R: 1
   Player: {fileID: 0}
 --- !u!1 &1291609711
 GameObject:
@@ -681,9 +681,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6757750000730051573, guid: 6dff607f8ede7bb4180745a863a2f4a8, type: 3}
-  count: 5
+  count: 20
   speed: 1
   objectPool: {fileID: 1060647761}
+  EnemySpeed: []
 --- !u!1 &1428387715
 GameObject:
   m_ObjectHideFlags: 0

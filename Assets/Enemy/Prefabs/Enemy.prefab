@@ -2149,8 +2149,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8141266575427093889}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8b36c8a197b931c42ad89ccd7f37257d, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abce0ed1ae35ebc4dba238b1cb72905e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2263,7 +2263,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7160634453229847871}
   rb: {fileID: 8875594257768885060}
+  weaponParent: {fileID: 8451355068370854379}
+  weaponPrefab: {fileID: 4490145171981364660}
   IsRunning: 0
+  IsAttacking: 0
+  IsIdle: 0
   Index: 0
 --- !u!114 &5355434864015463463
 MonoBehaviour:
@@ -2653,6 +2657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe_0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1c040a6e7d23e904b87e93fb9c66a037, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c040a6e7d23e904b87e93fb9c66a037, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -2698,6 +2706,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c040a6e7d23e904b87e93fb9c66a037, type: 3}
+--- !u!1 &4490145171981364660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 1c040a6e7d23e904b87e93fb9c66a037, type: 3}
+  m_PrefabInstance: {fileID: 4490145171981462292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4490145171981595028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1c040a6e7d23e904b87e93fb9c66a037, type: 3}

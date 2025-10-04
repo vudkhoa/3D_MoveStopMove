@@ -1,3 +1,4 @@
+using Enemy.StateAnim;
 using Enemy.View;
 using Map.Controller;
 using Player.Controller;
@@ -41,12 +42,15 @@ namespace Enemy.Controller
                 if (spawnPos != new Vector3(-1000f, -1000f, -1000f))
                 {
                     spawnPos.y = 0f;
+                    
                     EnemyView enemy = this.objectPool.GetPooledObject().GetComponent<EnemyView>();
                     enemy.transform.position = spawnPos;
                     enemy.gameObject.SetActive(true);
-                    // Instantiate(enemyPrefab, spawnPos, Quaternion.identity, this.transform);
                     enemy.name = "Enemy " + i;
                     enemy.Index = i;
+                    this.ContinueMove(enemy);
+                    
+                    
                     this.EnemySpeed.Add(this.speed);
                     this._enemies.Add(enemy);
                 }
@@ -56,16 +60,15 @@ namespace Enemy.Controller
 
         public void ContinueMove(EnemyView e)
         {
-            if (e.IsRunning) return;
+            if (e.IsAttacking) return;
 
             MapController.Instance.MaxTryCount = this.count * MapController.Instance.maxTryRatio;
-            Vector3 newPos = MapController.Instance.GetEmptyPosFollowR(e.transform.position, 20f);
-
+            Vector3 newPos = MapController.Instance.GetEmptyPosFollowR(e.transform.position, 10f);
+            //Debug.Log(newPos);
             if (newPos != new Vector3(-1000f, -1000f, -1000f))
             {
                 newPos.y = 0f;
                 e.SetTargetPos(newPos);
-                    
             }
             else
             {
@@ -80,11 +83,18 @@ namespace Enemy.Controller
             if (Vector3.Distance(e.gameObject.transform.position, PlayerController.Instance.Player.gameObject.transform.position) 
                 <= PlayerController.Instance.R)
             {
-                e.IsAttacking = true;
+                e.ChangeToAttack();
                 e.SetTargetPos(new Vector3(-1000, -1000, -1000), false);
                 this.EnemySpeed[e.Index] *= 5f;
-                //this.speed = this.speed * 5f;
-                //e.Rotate(PlayerController.Instance.Player.gameObject.transform.position);
+            }
+            else
+            {
+                if (e.IsAttacking)
+                {
+                    e.ChangeToIdle();
+                }
+                this.EnemySpeed[e.Index] = this.speed;
+                e.ResetView();
             }
 
             return isCollide;

@@ -1,21 +1,33 @@
 using Enemy.View;
-using UnityEngine;
 using Utils.DesignPattern.State;
 
 namespace Enemy.StateAnim
 {
     public class EnemyIdleState : IState<EnemyView>
     {
-        public void Enter(EnemyView enemy) { }
+        public void Enter(EnemyView enemy) 
+        {
+            enemy.animator.SetBool("IsIdle", true);
+        }
 
         public void Execute(EnemyView enemy)
         {
-            if (enemy.IsRunning)
+            if (!enemy.IsIdle)
             {
-                enemy.StateMachine.Change(enemy, new EnemyRunningState());
+                if (enemy.IsRunning)
+                {
+                    enemy.StateMachine.Change(enemy, new EnemyRunningState());
+                }
+                else if (enemy.IsAttacking)
+                {
+                    enemy.StateMachine.Change(enemy, new EnemyAttackState());
+                }
             }
         }
 
-        public void Exit(EnemyView enemy) { }
+        public void Exit(EnemyView enemy) 
+        {
+            enemy.animator.SetBool("IsIdle", false);
+        }
     }
 }
